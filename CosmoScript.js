@@ -80,7 +80,7 @@ let Cosmic = {
         results.forEach((element) => {
           let tableRow = document.createElement("tr");
           containers.tableBody.appendChild(tableRow);
-          functions.createColumns({ element: element, row: tableRow });
+          functions.appendingColumns({ element: element, row: tableRow });
         });
       },
       createPaginateSelect: () => {
@@ -100,7 +100,7 @@ let Cosmic = {
           ) {
             let tableRow = document.createElement("tr");
             containers.tableBody.appendChild(tableRow);
-            functions.createColumns({
+            functions.appendingColumns({
               results: results,
               row: tableRow,
               index: index,
@@ -108,7 +108,7 @@ let Cosmic = {
           }
         }
       },
-      createColumns: ({
+      appendingColumns: ({
         results = null,
         element = null,
         row,
