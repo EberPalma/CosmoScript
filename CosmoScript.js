@@ -7,7 +7,7 @@ let Cosmic = {
     tableElements,
     classes,
     paginate,
-    exportable
+    exportable,
   }) => {
     let containers = {
       table: document.createElement("table"),
@@ -42,26 +42,32 @@ let Cosmic = {
           column.innerHTML = element.name.toUpperCase();
           column.setAttribute("id", `cosmic-header-${element.name[count]}`);
           tableHeaderRow.appendChild(column);
-          
+
           count = count == tableElements.length ? 0 : count + 1;
         });
         containers.tableHeader.appendChild(tableHeaderRow);
       },
-      appendingFilters: (results) =>{
+      appendingFilters: (results) => {
         let tableFilterRow = document.createElement("tr");
         tableElements.forEach((element) => {
           let filterColumn = document.createElement("td");
-          let filter = element.filter ? document.createElement('input') : document.createElement('span');
-          if(element.filter){
-            filter.setAttribute('id', `cosmic-filter-${element.name}`);
-            filter.className="form-control"; 
+          let filter = element.filter
+            ? document.createElement("input")
+            : document.createElement("span");
+          if (element.filter) {
+            filter.setAttribute("id", `cosmic-filter-${element.name}`);
+            filter.className = "form-control";
 
-            filter.addEventListener('keyup', (e)=>{
-              let newElements = results.filter((el)=>{
-                return el[element.column].toLowerCase().indexOf(filter.value.toLowerCase()) >=0 ? element: '';
-              })
-              
-              containers.tableBody.innerHTML='';
+            filter.addEventListener("keyup", (e) => {
+              let newElements = results.filter((el) => {
+                return el[element.column]
+                  .toLowerCase()
+                  .indexOf(filter.value.toLowerCase()) >= 0
+                  ? element
+                  : "";
+              });
+
+              containers.tableBody.innerHTML = "";
               functions.appendingPaginatedRows(1, newElements);
             });
           }
@@ -74,12 +80,7 @@ let Cosmic = {
         results.forEach((element) => {
           let tableRow = document.createElement("tr");
           containers.tableBody.appendChild(tableRow);
-          element.columns.forEach((el) => {
-            let column = document.createElement("td");
-            column.innerHTML = element[el];
-            column.setAttribute("id", `column-${element[el]}`);
-            tableRow.appendChild(column);
-          });
+          functions.createColumns({ element: element, row: tableRow });
         });
       },
       createPaginateSelect: () => {
@@ -99,22 +100,39 @@ let Cosmic = {
           ) {
             let tableRow = document.createElement("tr");
             containers.tableBody.appendChild(tableRow);
-            let count = 0;
-            tableElements.forEach((el) => {
-              let column = document.createElement("td");
-              column.innerHTML = results[index][el.column];
-              column.setAttribute(
-                "id",
-                `cosmic-column-${el.column[count]}-${index}}`
-              );
-              tableRow.appendChild(column);
-              count = count == tableElements.length ? 0 : count + 1;
+            functions.createColumns({
+              results: results,
+              row: tableRow,
+              index: index,
             });
           }
         }
       },
-      exportData : (result)=>{
-        // TODO: terminar la funcion para exportar 
+      createColumns: ({
+        results = null,
+        element = null,
+        row,
+        index = null,
+      }) => {
+        let count = 0;
+        tableElements.forEach((el) => {
+          let column = document.createElement("td");
+          if (el.format != null) {
+            column.innerHTML =
+              index == null
+                ? el.format(element[el.column])
+                : el.format(results[index][el.column]);
+          } else {
+            column.innerHTML =
+              index == null ? el.column : results[index][el.column];
+          }
+          column.setAttribute("id", `cosmic-column-${el.name[count]}`);
+          row.appendChild(column);
+          count = count == tableElements.length ? 0 : count + 1;
+        });
+      },
+      exportData: (result) => {
+        // TODO: terminar la funcion para exportar
       },
       execute: () => {
         functions.createTable();
@@ -168,90 +186,5 @@ let Cosmic = {
     } else {
       functions.execute();
     }
-  },
-  beginLoadingAnimation: () => {
-    let containers = {
-      body: document.querySelector("body"),
-    };
-    let functions = {
-      appendingStyleSection: () => {
-        let styleTag = document.createElement("style");
-        styleTag.setAttribute("id", "cosmic-style-animation-keyframes");
-        styleTag.innerHTML = `@keyframes rotate-one { 0% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);}
-                              100% { transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg); } }
-                              @keyframes rotate-two { 0% { transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg); }
-                              100% { transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg); } }
-                              @keyframes rotate-three { 0% { transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg); } 
-                              100% { transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg); } }
-                              .inner {
-                                position: absolute;
-                                box-sizing: border-box;
-                                width: 100%;
-                                height: 100%;
-                                border-radius: 50%;  
-                              }`;
-        containers.body.appendChild(styleTag);
-      },
-      appendingLoadingSection: (element) => {
-        let section = document.querySelector(element);
-        let animationContainer = document.createElement("div");
-        let lineOne = document.createElement("div");
-        let lineTwo = document.createElement("div");
-        let lineThree = document.createElement("div");
-        animationContainer.setAttribute(
-          "style",
-          "position: absolute; top: 10; left: calc(50% - 32px); width: 64px; height: 64px; border-radius: 50%; perspective: 800px;"
-        );
-        animationContainer.setAttribute("id", "cosmic-loading-section");
-        lineOne.setAttribute(
-          "style",
-          "left: 0%; top: 0%; animation: rotate-one 1s linear infinite; border-bottom: 3px solid #000;"
-        );
-        lineOne.setAttribute("id", "cosmic-animation-line-one");
-        lineTwo.setAttribute("id", "cosmic-animation-line-twoo");
-        lineThree.setAttribute("id", "cosmic-animation-line-three");
-        lineOne.className = "inner";
-        lineTwo.className = "inner";
-        lineThree.className = "inner";
-        lineTwo.setAttribute(
-          "style",
-          "right: 0%; top: 0%; animation: rotate-two 1s linear infinite; border-right: 3px solid #000;"
-        );
-        lineThree.setAttribute(
-          "style",
-          "right: 0%; bottom: 0%; animation: rotate-three 1s linear infinite; border-top: 3px solid #000;"
-        );
-        animationContainer.appendChild(lineOne);
-        animationContainer.appendChild(lineTwo);
-        animationContainer.appendChild(lineThree);
-        section.appendChild(animationContainer);
-      },
-    };
-
-    functions.appendingLoadingSection("#loading");
-    functions.appendingStyleSection();
-  },
-  stopLoadingAnimation: () => {
-    let functions = {
-      removeLoadingSection: (element) => {
-        let loadingSection = document.querySelector("#cosmic-loading-section");
-        let lineOne = document.querySelector("#cosmic-animation-line-one");
-        let lineTwo = document.querySelector("#cosmic-animation-line-twoo");
-        let lineThree = document.querySelector("#cosmic-animation-line-three");
-        loadingSection.removeChild(lineOne);
-        loadingSection.removeChild(lineTwo);
-        loadingSection.removeChild(lineThree);
-        let loadingContainer = document.querySelector(element);
-        loadingContainer.removeChild(loadingSection);
-      },
-      removeStyleSection: () => {
-        let styleSection = document.querySelector(
-          "#cosmic-style-animation-keyframes"
-        );
-        document.querySelector("body").removeChild(styleSection);
-      },
-    };
-    functions.removeLoadingSection("#loading");
-    functions.removeStyleSection();
   },
 };

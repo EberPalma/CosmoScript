@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CosmoScript</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="table-container"></div>
     <script src="CosmoScript.js"></script>
     <script>
-        Cosmic.table({
-            container: "#table-container",
-            url: "https://pokeapi.co/api/v2/pokemon?offset=100&limit=100",
-            tableElements: [
-                {name: 'Nombre', column: 'name', filter: true},
-                {name: 'URL', column: 'url', filter: false}
-            ],
-            classes: ["table", "table-striped", "table-hover"],
-            paginate: 10,
-            exportable: {
-                to: ''
-            }
-        });
+      Cosmic.table({
+        container: "#table-container",
+        url: "https://pokeapi.co/api/v2/pokemon?offset=100&limit=100",
+        tableElements: [
+          { name: "Nombre", column: "name", filter: true },
+          {
+            name: "URL",
+            column: "url",
+            filter: false,
+            format: (url) => {
+              return `<a href="${url}">${url}</a>`;
+            },
+          },
+        ],
+        classes: ["table", "table-striped", "table-hover"],
+        paginate: 20,
+        exportable: {
+          to: "",
+        },
+      });
     </script>
-</body>
+  </body>
 </html>
