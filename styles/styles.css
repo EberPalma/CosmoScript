@@ -61,6 +61,7 @@ body .container {
   overflow: scroll;
 }
 body .container #ejemplo-container {
+  display: block;
   background-color: whitesmoke;
   border-radius: 10px;
   padding: 10px 20px;
@@ -76,4 +77,46 @@ body .container #table-container table {
 }
 body .container #table-container table tr input {
   width: 95%;
+}
+
+@media (max-width: 600px) {
+  body header {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.8fr 0.3fr;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+  body header .title {
+    margin: auto;
+  }
+  body header .blue {
+    font-size: 1.4rem;
+  }
+  body header .pink {
+    font-size: 1.4rem;
+  }
+  body header #header-links ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: -webkit-sticky;
+    position: sticky;
+    text-align: center;
+    padding: 1px;
+  }
+  body header #header-links ul li {
+    margin: 0;
+    padding: 0;
+  }
+  body header #header-links ul li a {
+    font-size: 1rem;
+  }
+  body .container {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+  body .container #ejemplo-container {
+    display: none;
+  }
 }/*# sourceMappingURL=styles.css.map */

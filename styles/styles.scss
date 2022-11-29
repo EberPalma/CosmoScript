@@ -66,6 +66,7 @@ body{
         gap: 10px;
         overflow: scroll;
         #ejemplo-container{
+            display: block;
             background-color: whitesmoke;
             border-radius: 10px;
             padding: 10px 20px;
@@ -84,6 +85,51 @@ body{
                         width: 95%;
                     }
                 }
+            }
+        }
+    }
+}
+
+@media (max-width: 600px){
+    body{
+        header{
+            grid-template-columns: 1fr;
+            grid-template-rows: 0.8fr 0.3fr;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            gap: 0;
+            .title{
+                margin: auto;
+            }
+            .blue{
+                font-size: 1.4rem;
+            }
+            .pink{
+                font-size: 1.4rem;
+            }
+            #header-links{
+                ul{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    position:sticky;
+                    text-align: center;
+                    padding: 1px;
+                    li{
+                        margin: 0;
+                        padding: 0;
+                        a{
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+        }
+        .container{
+            height: auto;
+            grid-template-columns: 1fr;
+            #ejemplo-container{
+                display: none;
             }
         }
     }
