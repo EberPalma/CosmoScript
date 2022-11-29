@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #96C4FA 0%, #F952FD 100%);
+  height: 100vh;
+  font-size: 16px;
+  overflow: scroll;
+}
+body .blue {
+  color: #96C4FA;
+  font-size: 2rem;
+  font-weight: 200;
+}
+body .pink {
+  color: #F952FD;
+  font-size: 2rem;
+  font-weight: 400;
+}
+body header {
+  background: whitesmoke;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 0.5fr 3fr;
+}
+body header #title {
+  height: 100%;
+  padding: 8px 20px;
+}
+body header #header-links ul {
+  position: absolute;
+  right: 20px;
+}
+body header #header-links ul li {
+  list-style-type: none;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 200;
+  padding: 15px;
+}
+body header #header-links ul li a {
+  text-decoration: none;
+  color: black;
+}
+body .container {
+  background-color: rgba(245, 245, 245, 0.4);
+  width: 80%;
+  height: 80vh;
+  margin: auto;
+  padding: 10px 30px;
+  margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+  border-radius: 20px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10px;
+  overflow: scroll;
+}
+body .container #ejemplo-container {
+  background-color: whitesmoke;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+body .container #ejemplo-container pre code {
+  font-size: 0.8rem;
+}
+body .container #table-container {
+  width: 100%;
+}
+body .container #table-container table {
+  width: 100%;
+}
+body .container #table-container table tr input {
+  width: 95%;
+}/*# sourceMappingURL=styles.css.map */

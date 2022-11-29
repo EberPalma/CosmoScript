@@ -5,9 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CosmoScript</title>
+
+    <!-- * Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap"
+      rel="stylesheet"
+    />
+    <!-- * Scripts -->
+    <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
-    <div id="table-container"></div>
+    <header>
+      <div id="title">
+        <span class="blue">Cosmo</span><span class="pink">Script</span>
+      </div>
+      <div id="header-links">
+        <ul>
+          <li><a href="#">Documentación</a></li>
+          <li><a href="#">Descargar</a></li>
+        </ul>
+      </div>
+    </header>
+    <div class="container">
+      <div id="ejemplo-container">
+        <div id="title">Ejemplo</div>
+        <pre><code>
+Cosmic.table({
+  container: "#table-container",
+  url: "https://pokeapi.co/api/v2/pokemon?offset=100&limit=100",
+  tableElements: [
+    { name: "Nombre", column: "name", filter: true },
+    {
+      name: "URL",
+      column: "url",
+      filter: false,
+              format: (url) => {
+        return `&lt;a href="${url}"&gt;${url}&lt;/a&gt;`;
+      },
+    },
+  ],
+  classes: ["table", "table-striped", "table-hover"],
+  paginate: 20,
+});
+        </code></pre>
+      </div>
+      <div id="table-container"></div>
+    </div>
+
     <script src="CosmoScript.js"></script>
     <script>
       Cosmic.table({
