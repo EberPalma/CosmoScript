@@ -24,11 +24,19 @@ body header {
   background: whitesmoke;
   height: 60px;
   display: grid;
-  grid-template-columns: 0.5fr 3fr;
+  grid-template-columns: 1.2fr 3fr;
+}
+body header #logo {
+  height: 40px;
+  position: relative;
+  top: 5px;
 }
 body header #title {
   height: 100%;
-  padding: 8px 20px;
+  padding: 0 20px;
+}
+body header #title span {
+  margin-top: -20px;
 }
 body header #header-links ul {
   position: absolute;
@@ -56,7 +64,7 @@ body .container {
   border-radius: 20px;
   box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   overflow: scroll;
 }
@@ -66,8 +74,9 @@ body .container #ejemplo-container {
   border-radius: 10px;
   padding: 10px 20px;
 }
-body .container #ejemplo-container pre code {
-  font-size: 0.8rem;
+body .container #ejemplo-container img {
+  margin-top: 20px;
+  width: 100%;
 }
 body .container #table-container {
   width: 100%;
@@ -79,7 +88,7 @@ body .container #table-container table tr input {
   width: 95%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1040px) {
   body header {
     grid-template-columns: 1fr;
     grid-template-rows: 0.8fr 0.3fr;
@@ -112,11 +121,10 @@ body .container #table-container table tr input {
   body header #header-links ul li a {
     font-size: 1rem;
   }
+}
+@media (max-width: 720px) {
   body .container {
     height: auto;
     grid-template-columns: 1fr;
-  }
-  body .container #ejemplo-container {
-    display: none;
   }
 }/*# sourceMappingURL=styles.css.map */

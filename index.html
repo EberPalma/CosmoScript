@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CosmoScript</title>
 
+    <!-- * Favicon -->
+    <link rel="shortcut icon" href="faviconsvg.png" type="image/png" />
+
     <!-- * Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,6 +22,7 @@
   <body>
     <header>
       <div id="title">
+        <img id="logo" src="faviconsvg.png" alt="Favicon CS" />
         <span class="blue">Cosmo</span><span class="pink">Script</span>
       </div>
       <div id="header-links">
@@ -36,25 +40,10 @@
     <div class="container">
       <div id="ejemplo-container">
         <div id="title">Ejemplo</div>
-        <pre><code>
-Cosmic.table({
-  container: "#table-container",
-  url: "https://pokeapi.co/api/v2/pokemon?offset=100&limit=100",
-  tableElements: [
-    { name: "Nombre", column: "name", filter: true },
-    {
-      name: "URL",
-      column: "url",
-      filter: false,
-              format: (url) => {
-        return `&lt;a href="${url}"&gt;${url}&lt;/a&gt;`;
-      },
-    },
-  ],
-  classes: ["table", "table-striped", "table-hover"],
-  paginate: 20,
-});
-        </code></pre>
+        <img
+          src="assets/img/CosmoScript.png"
+          alt="Implementacion de CosmoScript"
+        />
       </div>
       <div id="table-container"></div>
     </div>

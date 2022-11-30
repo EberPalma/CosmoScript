@@ -28,10 +28,18 @@ body{
         background: whitesmoke;
         height: 60px;
         display: grid;
-        grid-template-columns: 0.5fr 3fr;
+        grid-template-columns: 1.2fr 3fr;
+        #logo{
+            height: 40px;
+            position: relative;
+            top: 5px;
+        }
         #title{
             height: 100%;
-            padding: 8px 20px;
+            padding: 0 20px;
+            span{
+                margin-top: -20px;
+            }
         }
         #header-links{
             ul{
@@ -62,7 +70,7 @@ body{
         border-radius: 20px;
         box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr 1fr;
         gap: 10px;
         overflow: scroll;
         #ejemplo-container{
@@ -70,10 +78,9 @@ body{
             background-color: whitesmoke;
             border-radius: 10px;
             padding: 10px 20px;
-            pre {
-                code{
-                font-size: 0.8rem;
-                }
+            img{
+                margin-top: 20px;
+                width: 100%;
             }
         }
         #table-container{
@@ -90,7 +97,7 @@ body{
     }
 }
 
-@media (max-width: 600px){
+@media (max-width: 1040px){
     body{
         header{
             grid-template-columns: 1fr;
@@ -125,12 +132,15 @@ body{
                 }
             }
         }
+    }
+}
+
+@media (max-width: 720px){
+    body{
+        
         .container{
             height: auto;
             grid-template-columns: 1fr;
-            #ejemplo-container{
-                display: none;
-            }
         }
     }
 }
