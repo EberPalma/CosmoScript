@@ -4,6 +4,7 @@ let Cosmic = {
     url,
     method,
     headers,
+    params,
     tableElements,
     classes,
     paginate,
@@ -21,9 +22,11 @@ let Cosmic = {
     };
     let functions = {
       createTable: () => {
-        classes.forEach((element) => {
-          containers.table.className += element + " ";
-        });
+        if (classes != undefined) {
+          classes.forEach((element) => {
+            containers.table.className += element + " ";
+          });
+        }
         containers.tableContainer.appendChild(containers.table);
         containers.table.appendChild(containers.tableHeader);
         containers.table.appendChild(containers.tableBody);
